@@ -1,0 +1,13 @@
+/*.navbar {
+background: rgb(172,58,180);
+background: linear-gradient(90deg, #FE0000 0%, #FD8C00 20%, #FFE500 40%, #119F0B 60%, #0644B3 80%, #C22EDC 100%);
+color: white;
+}
+*/
+div.Wynik {
+    height: 5em;
+    display: flex;
+    align-items: center;
+    justify-content: center }
+  div.Wynik {
+    margin: 0 }
