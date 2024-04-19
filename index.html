@@ -1,86 +1,154 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE>
+<html lang="pl">
+
 <head>
     <title>Kalkulator RRSO</title>
     <link rel="stylesheet" href="styles.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/big.js@5.2.2/big.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
     <script src="RRSO.js"></script>
-    <!--<script src="https://unpkg.com/js-big-decimal@1.3.1/dist/web/js-big-decimal.min.js"></script> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.0.4/css/bootstrap5-toggle.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.0.4/js/bootstrap5-toggle.ecmas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.0.4/js/bootstrap5-toggle.ecmas.min.js"></script>
 </head>
-<body>
-<nav class="navbar bg-primary">
-    <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1" style="color: white;">Kalkulator RRSO</span>
-    </div>
-</nav>
-<div class="container">
-    <div class="Kalkulator">
-        <span class="d-block p-2 text-bg-primary">Kwota kredytu: </span>
-        <div class="Kwota kredytu">
-            <div class="input-group">
-                <input type="button" id="m1" value="-" onclick="kw.value = parseInt(subtractValue1())" class="btn btn-primary">
-                <input type="number" class="form-control" id="kw">
-                <span class="input-group-text">zł</span>
-                <input type="button" id="p1" value="+" onclick="kw.value = parseInt(addValue1())" class="btn btn-primary">
-            </div>
+
+<body class="d-flex flex-column">
+    
+    <nav class="navbar navbar_color">
+        <div class="container-fluid d-flex justify-content-center">
+            <span class="navbar-brand mb-0 h1 text-center" style="color: white;">Kalkulator RRSO</span>
         </div>
-        <span class="d-block p-2 text-bg-primary">Liczba rat: </span>
-        <div class="Liczba_rat">
-            <div class="input-group">
-                <input type="button" id="m5" value="-" onclick="lr.value = subtractValue5()" class="btn btn-primary">
-                <input type="number" class="form-control" id="lr">
-                <input type="button" id="p5" value="+" onclick="lr.value = addValue5()" class="btn btn-primary">
-            </div>
-        </div>
-        <span class="d-block p-2 text-bg-primary">Oprocentowanie: </span>
-        <div class="Oprocentowanie">
-            <div class="input-group">
-                <input type="button" id="m3" value="-" onclick="op.value = subtractValue3()" class="btn btn-primary">
-                <input type="number" class="form-control" id="op">
-                <span class="input-group-text">%</span>
-                <input type="button" id="p3" value="+" onclick="op.value = addValue3()" class="btn btn-primary">
-            </div>
-        </div>
-        <span class="d-block p-2 text-bg-primary">Prowizja: </span>
-        <div class="Prowizja">
-            <div class="input-group">
-                <input type="button" id="m4" value="-" onclick="pr.value = subtractValue4()" class="btn btn-primary">
-                <input type="number" class="form-control" id="pr">
-                <span class="input-group-text">%</span>
-                <input type="button" id="p4" value="+" onclick="pr.value = addValue4()" class="btn btn-primary">
-            </div>
-        </div>
+    </nav>
+
+    <div class="container">
         <br>
-        Raty: &nbsp;<input type="checkbox" checked data-toggle="toggle" data-onlabel="Malejące" data-offlabel="Stałe" data-onstyle="success" data-offstyle="danger">
-        <br>
-        <div class = "Wynik">
-            <form class="row gy-2 gx-3 align-items-center">
-                <div class="col-auto">
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <input type="reset" value="Reset" onclick="kw.value = ok.value = op.value = pr.value = lr.value = ''" class="btn btn-primary">
-                        <input type="button" class="btn btn-primary" value="Zatwierdź" onclick="autoSizingInputGroup.value = RRSO()">
-                    </div>   
+        <div class="Kalkulator">
+            <span class="d-block p-2">Kwota kredytu: </span>
+            <div class="Kwota kredytu">
+                <div class="input-group btn_color">
+                    <input type="button" id="m1" value="-" onclick="decreaseLoan()" class="btn">
+                    <input type="number" class="form-control" id="kw" value=100000 onchange="updateLoan()"
+                        min=0 required title="Podaj kwotę kredytu">
+                    <span class="input-group-text">zł</span>
+                    <input type="button" id="p1" value="+" onclick="increaseLoan()" class="btn">
                 </div>
-                <div class="col-auto">
-                  <div class="input-group">
-                    <div class="input-group-text">RRSO: </div>
-                    <input type="number" class="form-control" id="autoSizingInputGroup" readonly>
+                <!--<div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                  </div> -->
+            </div>
+            <span class="d-block p-2 text-bg-primary">Liczba rat miesiecznych: </span>
+            <div class="Liczba_rat">
+                <div class="input-group btn_color">
+                    <input type="button" id="m5" value="-" onclick="decreaseTheNumberOfInstallments()" class="btn">
+                    <input type="number" class="form-control" id="lr" value=6 required title="Podaj liczbę rat miesięcznych" onchange="updateNumberOfInstallments()">
+                    <input type="button" id="p5" value="+" onclick="increaseTheNumberOfInstallments()" class="btn">
+                </div>
+            </div>
+            <span class="d-block p-2 text-bg-primary">Oprocentowanie: </span>
+            <div class="Oprocentowanie">
+                <div class="input-group btn_color">
+                    <input type="button" id="m3" value="-" onclick="decreaseLoanInterestRate()" class="btn">
+                    <input type="number" class="form-control" id="op" value=8 required title="Podaj wysokość oprocentowania" onchange="updateLoanInterestRate()">
                     <span class="input-group-text">%</span>
-                  </div>
+                    <input type="button" id="p3" value="+" onclick="increaseLoanInterestRate()" class="btn">
                 </div>
-              </form>
+            </div>
+            <span class="d-block p-2 text-bg-primary">Prowizja: </span>
+            <div class="Prowizja">
+                <div class="input-group btn_color">
+                    <input type="button" id="m4" value="-" onclick="decreaseLoanFee()" class="btn">
+                    <input type="number" class="form-control" id="pr" value=1 required title="Podaj wysokość prowizji" onchange="updateLoanFee()">
+                    <span class="input-group-text">%</span>
+                    <input type="button" id="p4" value="+" onclick="increaseLoanFee()" class="btn">
+                </div>
+            </div>
+            <span class="d-block p-2 text-bg-primary">Do której raty dodać prowizje: </span>
+            <div class="Prowizja">
+                <div class="input-group btn_color">
+                    <input type="button" id="m4" value="-" onclick="decreaseNumberOfRates()" class="btn">
+                    <input type="number" class="form-control" id="pr_rat" value=1 required title="Podaj numer raty, do której zostanie dodana prowizja" onchange="updateNumberOfRates()">
+                    <input type="button" id="p4" value="+" onclick="increaseNumberOfRates()" class="btn">
+                </div>
+            </div>
+            <br>
+
+            <div class="col-12 col-md-12">
+                Raty: &nbsp;<input type="checkbox" checked data-toggle="toggle" data-onlabel="Malejące"
+                    data-offlabel="Stałe" id="toggle-event" data-onstyle="info">
+            </div>
+            <br>
+            <div class="col-12 col-md-12">
+                Ilość transz: &nbsp;<input type="checkbox" checked data-toggle="toggle" data-onlabel="1 transza"
+                    data-offlabel="2 transze" data-onstyle="info" id="toggle-event2">
+            </div>
+            <br>
+
+
+            <br>
+            <div id="transze" style="display: none;">
+                <span class="d-block p-2 text-bg-primary">Wysokość pierwszej transzy: </span>
+                <div class="Wysokość pierwszej transzy">
+                    <div class="input-group btn_color">
+                        <input type="button" id="m1" value="-" onclick="decreaseFirstDisbursement()" class="btn">
+                        <input type="number" class="form-control" id="kw1" value=100000 onchange="updateFirstDisbursement()" title="Podaj wysokość pierwszej transzy">
+                        <span class="input-group-text">zł</span>
+                        <input type="button" id="p1" value="+" onclick="increaseFirstDisbursement()" class="btn">
+                    </div>
+                </div>
+                <span class="d-block p-2 text-bg-primary">Wysokość drugiej transzy: </span>
+                <div class="Wysokość drugiej transzy">
+                    <div class="input-group btn_color">
+                        <input type="button" id="m1" value="-" onclick="decreaseSecondDisbursement()" class="btn">
+                        <input type="number" class="form-control" id="kw2" value=0 onchange="updateSecondDisbursement()" title="Podaj wysokość drugiej transzy">
+                        <span class="input-group-text">zł</span>
+                        <input type="button" id="p1" value="+" onclick="increaseSecondDisbursement()" class="btn">
+                    </div>
+                </div>
+                <span class="d-block p-2 text-bg-primary">Ilość dni między transzami: </span>
+                <div class="Ilość dni">
+                    <div class="input-group btn_color">
+                        <input type="button" id="m1" value="-" onclick="decreaseDays()" class="btn">
+                        <input type="number" class="form-control" id="kw3" value=30 title="Podaj ilość dni pomiędzy transzami">
+                        <input type="button" id="p1" value="+" onclick="increaseDays()" class="btn">
+                    </div>
+                </div>
+                <br>
+            </div>
+
+            <div class="Wynik">
+                <form class="row gy-2 gx-3 align-items-center">
+                    <div class="col-12 col-md-9 d-flex justify-content-center">
+                        <div class="input-group">
+                            <div class="input-group-text">RRSO: </div>
+                            <input type="number" class="form-control" id="autoSizingInputGroup" readonly>
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3 d-flex justify-content-center">
+                        <div class="btn-group btn_color" role="group" aria-label="Basic example">
+                            <input type="reset" value="Reset"
+                                onclick="kw.value = ok.value = op.value = pr.value = lr.value = ''" class="btn">
+                            <input type="button" class="btn" value="Zatwierdź"
+                                onclick="autoSizingInputGroup.value = RRSO()">
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <br>
+                <br>
+            </div>
         </div>
     </div>
-</div>
-    <footer class="footer-main bg-primary fixed-bottom" style="color: white;">
+
+    <footer class="footer-main navbar_color p-4 text-center mt-auto" style="color: white;">
         Autorzy: Małgorzata Kowalczyk, Karol Gadula, Szymon Gosa, Paweł Łęcki
     </footer>
 </body>
-</html>
 
+</html>

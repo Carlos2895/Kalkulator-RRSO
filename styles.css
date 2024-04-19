@@ -1,13 +1,22 @@
-/*.navbar {
-background: rgb(172,58,180);
-background: linear-gradient(90deg, #FE0000 0%, #FD8C00 20%, #FFE500 40%, #119F0B 60%, #0644B3 80%, #C22EDC 100%);
-color: white;
+.navbar_color {
+  background-color: #03045e;
 }
-*/
-div.Wynik {
-    height: 5em;
-    display: flex;
-    align-items: center;
-    justify-content: center }
-  div.Wynik {
-    margin: 0 }
+
+.btn_color {
+  background-color: #5e548e;
+  border-color: #5e548e;
+
+  .btn {
+    color: white;
+  }
+
+}
+html, body {
+  height: 100%;
+}
+.content {
+  flex: 1;
+}
+.footer {
+  margin-top: auto;
+}
