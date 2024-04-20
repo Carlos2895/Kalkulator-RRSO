@@ -19,7 +19,8 @@ function decreaseLoan() {
 // zmiana kwoty kredytu 
 function updateLoan() {
     var inputLoanValue = parseInt(document.getElementById("kw").value);
-    if (inputLoanValue <= 0) {
+    console.log("Zmiana ", inputLoanValue);
+    if (inputLoanValue <= 0 || isNaN(inputLoanValue)) {
         document.getElementById("kw").value = 1000;
         document.getElementById("kw1").value = 1000;
         document.getElementById("kw2").value = 0;
@@ -51,7 +52,7 @@ function decreaseTheNumberOfInstallments() {
 // zmiana liczby rat 
 function updateNumberOfInstallments() {
     var inputNumberOfRateValue = parseInt(document.getElementById("lr").value);
-    if (inputNumberOfRateValue <= 0) {
+    if (inputNumberOfRateValue <= 0 || isNaN(inputNumberOfRateValue)) {
         document.getElementById("lr").value = 1;
     }
     inputNumberOfRateValue = document.getElementById("lr").value;
@@ -75,7 +76,7 @@ function decreaseLoanInterestRate() {
 // zmiana oprocentowania 
 function updateLoanInterestRate() {
     var inputLoanInterestRateValue = parseInt(document.getElementById("op").value);
-    if (inputLoanInterestRateValue < 0) {
+    if (inputLoanInterestRateValue < 0 ||  isNaN(inputLoanInterestRateValue)) {
         document.getElementById("op").value = 0;
     }
 }
@@ -95,8 +96,9 @@ function decreaseLoanFee() {
 }
 //zmiana prowizji 
 function updateLoanFee() {
-    var inputLoanFeeValue = parseInt(document.getElementById("pr").value);
-    if (inputLoanFeeValue < 0) {
+    var inputLoanFeeValue = parseFloat(document.getElementById("pr").value);
+    console.log(inputLoanFeeValue);
+    if (inputLoanFeeValue < 0 || isNaN(inputLoanFeeValue)) {
         document.getElementById("pr").value = 0;
     }
 }
@@ -126,8 +128,10 @@ function decreaseFirstDisbursement() {
 //zmiana pierwszej transzy
 function updateFirstDisbursement() {
     var inputLoanValue = parseInt(document.getElementById("kw").value);
-    var inputFirstDisbursementValue = parseInt(document.getElementById("kw1").value);
+    var inputFirstDisbursementValue = document.getElementById("kw1").value;
+    console.log(inputFirstDisbursementValue);
     if(inputFirstDisbursementValue<0) document.getElementById("kw1").value=0;
+    if(inputFirstDisbursementValue=='') document.getElementById("kw1").value=0;
     if (inputFirstDisbursementValue > inputLoanValue) {
         document.getElementById("kw1").value = inputLoanValue;
         document.getElementById("kw2").value = 0;
@@ -159,7 +163,8 @@ function decreaseSecondDisbursement() {
 //Zmiana drugiej transzy
 function updateSecondDisbursement() {
     var inputLoanValue = parseInt(document.getElementById("kw").value);
-    var inputSecondDisbursementValue = parseInt(document.getElementById("kw2").value);
+    var inputSecondDisbursementValue =document.getElementById("kw2").value;
+    if(inputSecondDisbursementValue=='') document.getElementById("kw2").value=0;
     if(inputSecondDisbursementValue<0)
     {
         document.getElementById("kw2").value=0;
@@ -178,9 +183,18 @@ function increaseDays() {
 }
 //zmniejszanie ilosci dni za pomoca -
 function decreaseDays() {
-    let inputDaysValue = document.getElementById("kw3").value = parseInt(document.getElementById("kw3").value);
+    let inputDaysValue = document.getElementById("kw3").value;
     if (inputDaysValue > 1) {
         document.getElementById("kw3").value = inputDaysValue - 1;
+    }
+}
+
+function updateDays()
+{
+    console.log("Zmiana");
+    let inputDaysValue = parseInt(document.getElementById("kw3").value);
+    if (inputDaysValue <0 || isNaN(inputDaysValue)) {
+        document.getElementById("kw3").value = 1;
     }
 }
 // NUMER RATY DO KTOREJ DODAWANA JEST PROWIZJA
@@ -207,8 +221,8 @@ function decreaseNumberOfRates() {
 function updateNumberOfRates() {
     var inputloanFeeTimeValue = parseInt(document.getElementById("pr_rat").value);
     var inputNumberOfRateValue = parseInt(document.getElementById("lr").value);
-    if (inputloanFeeTimeValue < 0) {
-        document.getElementById("pr_rat").value = 0;
+    if (inputloanFeeTimeValue < 0 || isNaN(inputloanFeeTimeValue)) {
+        document.getElementById("pr_rat").value = 1;
     }
     else if (inputloanFeeTimeValue > inputNumberOfRateValue) {
         document.getElementById("pr_rat").value = inputNumberOfRateValue;
@@ -274,10 +288,11 @@ function RRSO() {
     let loanValue = parseInt(document.getElementById("kw").value);
     //ilość rat miesięcznych
     let numberOfInstallments = parseInt(document.getElementById("lr").value);
+    
     //oprocentowanie kredytu
-    let loanInterestRate = (document.getElementById("op").value / 100) / 12;
+    let loanInterestRate =(document.getElementById("op").value / 100) / 12;
     //prowizja
-    let loanFee = (document.getElementById("pr").value / 100) * loanValue;
+    let loanFee = parseFloat((document.getElementById("pr").value / 100) * loanValue);
 
     //numer raty do ktorej dodawana jest prowizja
     let loanFeeTime = document.getElementById("pr_rat").value;
@@ -294,7 +309,7 @@ function RRSO() {
     let rest = loanValue;
 
     // Walidacja danych
-    if (loanValue < 0 || !Number.isInteger(loanValue) || numberOfInstallments < 1 || loanInterestRate < 0 || loanFee < 0 || loanFeeTime <= 0 || loanFeeTime > numberOfInstallments || (creditPaymentMethod != 1 && creditPaymentMethod != 2) || (instalmentDisbursement != 1 && instalmentDisbursement != 2)) {
+    if (loanValue < 0 || !Number.isInteger(loanValue) || numberOfInstallments < 1 || !Number.isInteger(numberOfInstallments) ||loanInterestRate < 0 || !Number.isFinite(loanInterestRate) || loanFee < 0 || loanFeeTime <= 0 || loanFeeTime > numberOfInstallments || (creditPaymentMethod != 1 && creditPaymentMethod != 2) || (instalmentDisbursement != 1 && instalmentDisbursement != 2)) {
         if (loanValue < 0 || !Number.isInteger(loanValue)) {
             var alertHtml = `
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -303,7 +318,7 @@ function RRSO() {
           </div>
         `;
         }
-        else if (numberOfInstallments <= 1) {
+        else if (numberOfInstallments <= 1 || !Number.isInteger(numberOfInstallments) ) {
             var alertHtml = `
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Nieprawidłowa liczba rat</strong>
@@ -311,7 +326,7 @@ function RRSO() {
           </div>
         `;
         }
-        else if (loanInterestRate < 0 || !Number.isInteger(validateLoanInterestRate)) {
+        else if (loanInterestRate < 0 || !Number.isFinite(loanInterestRate)) {
             var alertHtml = `
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Nieprawidłowe oprocentowanie</strong>
@@ -359,7 +374,6 @@ function RRSO() {
             let capitalInstallmentDecreasing = loanValue / numberOfInstallments;
             for (let i = 0; i < numberOfInstallments; i++) {
                 decreasingInstallments[i] = rest * loanInterestRate + capitalInstallmentDecreasing;
-                console.log(loanFeeTime);
                 if (i === loanFeeTime - 1) {
                     decreasingInstallments[i] += loanFee;
                 }
@@ -448,6 +462,7 @@ function RRSO() {
                   `;
                 }
                 document.querySelector('.container').insertAdjacentHTML('beforebegin', alertHtml);
+                
             }
             else {
 

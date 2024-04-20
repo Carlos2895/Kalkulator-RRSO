@@ -1,5 +1,6 @@
-<!DOCTYPE>
-<html lang="pl">
+<!doctype html>
+<html lang="en">
+
 
 <head>
     <title>Kalkulator RRSO</title>
@@ -34,7 +35,7 @@
                 <div class="input-group btn_color">
                     <input type="button" id="m1" value="-" onclick="decreaseLoan()" class="btn">
                     <input type="number" class="form-control" id="kw" value=100000 onchange="updateLoan()"
-                        min=0 required title="Podaj kwotę kredytu">
+                        min=0 required title="Podaj kwotę kredytu" onkeydown="return event.keyCode !== 13 && event.keyCode !== 69">
                     <span class="input-group-text">zł</span>
                     <input type="button" id="p1" value="+" onclick="increaseLoan()" class="btn">
                 </div>
@@ -46,7 +47,7 @@
             <div class="Liczba_rat">
                 <div class="input-group btn_color">
                     <input type="button" id="m5" value="-" onclick="decreaseTheNumberOfInstallments()" class="btn">
-                    <input type="number" class="form-control" id="lr" value=6 required title="Podaj liczbę rat miesięcznych" onchange="updateNumberOfInstallments()">
+                    <input type="number" class="form-control" id="lr" value=6 required title="Podaj liczbę rat miesięcznych" onchange="updateNumberOfInstallments()" onkeydown="return event.keyCode !== 13 && event.keyCode !== 69">
                     <input type="button" id="p5" value="+" onclick="increaseTheNumberOfInstallments()" class="btn">
                 </div>
             </div>
@@ -54,7 +55,7 @@
             <div class="Oprocentowanie">
                 <div class="input-group btn_color">
                     <input type="button" id="m3" value="-" onclick="decreaseLoanInterestRate()" class="btn">
-                    <input type="number" class="form-control" id="op" value=8 required title="Podaj wysokość oprocentowania" onchange="updateLoanInterestRate()">
+                    <input type="number" class="form-control" id="op" value=8 required title="Podaj wysokość oprocentowania" onchange="updateLoanInterestRate()" onkeydown="return event.keyCode !== 13 && event.keyCode !== 69">
                     <span class="input-group-text">%</span>
                     <input type="button" id="p3" value="+" onclick="increaseLoanInterestRate()" class="btn">
                 </div>
@@ -63,7 +64,7 @@
             <div class="Prowizja">
                 <div class="input-group btn_color">
                     <input type="button" id="m4" value="-" onclick="decreaseLoanFee()" class="btn">
-                    <input type="number" class="form-control" id="pr" value=1 required title="Podaj wysokość prowizji" onchange="updateLoanFee()">
+                    <input type="number" class="form-control" id="pr" value=1 required title="Podaj wysokość prowizji" onchange="updateLoanFee()" onkeydown="return event.keyCode !== 13 && event.keyCode !== 69">
                     <span class="input-group-text">%</span>
                     <input type="button" id="p4" value="+" onclick="increaseLoanFee()" class="btn">
                 </div>
@@ -72,7 +73,7 @@
             <div class="Prowizja">
                 <div class="input-group btn_color">
                     <input type="button" id="m4" value="-" onclick="decreaseNumberOfRates()" class="btn">
-                    <input type="number" class="form-control" id="pr_rat" value=1 required title="Podaj numer raty, do której zostanie dodana prowizja" onchange="updateNumberOfRates()">
+                    <input type="number" class="form-control" id="pr_rat" value=1 required title="Podaj numer raty, do której zostanie dodana prowizja" onchange="updateNumberOfRates()" onkeydown="return event.keyCode !== 13 && event.keyCode !== 69">
                     <input type="button" id="p4" value="+" onclick="increaseNumberOfRates()" class="btn">
                 </div>
             </div>
@@ -80,12 +81,12 @@
 
             <div class="col-12 col-md-12">
                 Raty: &nbsp;<input type="checkbox" checked data-toggle="toggle" data-onlabel="Malejące"
-                    data-offlabel="Stałe" id="toggle-event" data-onstyle="info">
+                    data-offlabel="Stałe" id="toggle-event">
             </div>
             <br>
             <div class="col-12 col-md-12">
                 Ilość transz: &nbsp;<input type="checkbox" checked data-toggle="toggle" data-onlabel="1 transza"
-                    data-offlabel="2 transze" data-onstyle="info" id="toggle-event2">
+                    data-offlabel="2 transze" id="toggle-event2">
             </div>
             <br>
 
@@ -96,7 +97,7 @@
                 <div class="Wysokość pierwszej transzy">
                     <div class="input-group btn_color">
                         <input type="button" id="m1" value="-" onclick="decreaseFirstDisbursement()" class="btn">
-                        <input type="number" class="form-control" id="kw1" value=100000 onchange="updateFirstDisbursement()" title="Podaj wysokość pierwszej transzy">
+                        <input type="number" class="form-control text" id="kw1" value=100000 onchange="updateFirstDisbursement()" title="Podaj wysokość pierwszej transzy" onkeydown="return event.keyCode !== 13 && event.keyCode !== 69">
                         <span class="input-group-text">zł</span>
                         <input type="button" id="p1" value="+" onclick="increaseFirstDisbursement()" class="btn">
                     </div>
@@ -105,7 +106,7 @@
                 <div class="Wysokość drugiej transzy">
                     <div class="input-group btn_color">
                         <input type="button" id="m1" value="-" onclick="decreaseSecondDisbursement()" class="btn">
-                        <input type="number" class="form-control" id="kw2" value=0 onchange="updateSecondDisbursement()" title="Podaj wysokość drugiej transzy">
+                        <input type="number" class="form-control" id="kw2" value=0 onchange="updateSecondDisbursement()" title="Podaj wysokość drugiej transzy" onkeydown="return event.keyCode !== 13 && event.keyCode !== 69">
                         <span class="input-group-text">zł</span>
                         <input type="button" id="p1" value="+" onclick="increaseSecondDisbursement()" class="btn">
                     </div>
@@ -114,7 +115,7 @@
                 <div class="Ilość dni">
                     <div class="input-group btn_color">
                         <input type="button" id="m1" value="-" onclick="decreaseDays()" class="btn">
-                        <input type="number" class="form-control" id="kw3" value=30 title="Podaj ilość dni pomiędzy transzami">
+                        <input type="number" class="form-control" id="kw3" value=30 title="Podaj ilość dni pomiędzy transzami" onchange="updateDays()">
                         <input type="button" id="p1" value="+" onclick="increaseDays()" class="btn">
                     </div>
                 </div>
@@ -146,8 +147,10 @@
         </div>
     </div>
 
-    <footer class="footer-main navbar_color p-4 text-center mt-auto" style="color: white;">
-        Autorzy: Małgorzata Kowalczyk, Karol Gadula, Szymon Gosa, Paweł Łęcki
+    <footer class="footer-main navbar_color p-2 text-center mt-auto" style="color: white;">
+        <p>Autorzy: </p>
+        <p>Lider grupy: Karol Gadula</p>
+        <p>Pozostali członkowie grupy: Małgorzata Kowalczyk, Szymon Gosa, Paweł Łęcki</p>
     </footer>
 </body>
 

@@ -20,3 +20,17 @@ html, body {
 .footer {
   margin-top: auto;
 }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.toggle-on.btn-primary {
+  background-color: #5e548e !important;
+  border-color: #5e548e !important;
+
+}
+.toggle-off.btn-secondary {
+  background-color: #03045e !important;
+  border-color: #03045e !important;
+}
